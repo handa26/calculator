@@ -3,6 +3,7 @@ let num2 = [0];
 let operator;
 let displayNum = [];
 let sumResult;
+let keyEnter;
 
 const btnNums = document.querySelectorAll(".btn-num");
 const btnOperators = document.querySelectorAll(".btn-operator");
@@ -27,6 +28,43 @@ btnNums.forEach((btnNum) => btnNum.addEventListener("click", () => {
     num1.push(0);
   }
 }));
+
+document.addEventListener("keypress", (e) => {
+  const allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+
+  if (e.key === "Enter") {
+    keyEnter = e.key;
+  }
+
+  // Check if the pressed key is in the allowed keys list
+  if (allowedKeys.includes(e.key)) {
+    console.log("Allowed key pressed: ", e.key);
+    if (operator === undefined) {
+      num1.push(e.key);
+      displayNum.push(e.key);
+    } else {
+      num2.push(e.key);
+      displayNum.push(e.key);
+    }
+  
+    result.textContent = displayNum.join("");
+  
+    // In case one of operator clicked first
+    if (operator !== undefined && num2 === undefined) {
+      num1.push(0);
+    }
+  }
+});
+
+document.addEventListener("keypress", (e) => {
+  const allowedKeys = ["+", "-", "x", "%", "/"];
+
+  if (allowedKeys.includes(e.key)) {
+    operator = e.key;
+    result.textContent = "0";
+    displayNum = [];
+  }
+});
 
 btnOperators.forEach((btnOperator) => btnOperator.addEventListener("click", () => {
   operator = btnOperator.innerHTML;
@@ -74,7 +112,7 @@ const reset = () => {
   displayNum = [];
 }
 
-btnRun.addEventListener("click", () => {
+const handleCalculation = () => {
   let convertNum1 = num1.join("");
   let convertNum2 = num2.join("");
 
@@ -86,6 +124,14 @@ btnRun.addEventListener("click", () => {
   reset();
 
   result.innerHTML = sumResult;
+};
+
+btnRun.addEventListener("click", handleCalculation);
+
+document.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    handleCalculation();
+  }
 });
 
 btnReset.addEventListener("click", () => {
