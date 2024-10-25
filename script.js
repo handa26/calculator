@@ -9,6 +9,7 @@ const btnOperators = document.querySelectorAll(".btn-operator");
 const btnRun = document.querySelector(".btn-run");
 const result = document.querySelector("#result");
 const btnMultiply = document.querySelector(".btn-multiply");
+const btnReset = document.querySelector("#btn-reset");
 
 btnNums.forEach((btnNum) => btnNum.addEventListener("click", () => {
   if (operator === undefined) {
@@ -85,4 +86,8 @@ btnRun.addEventListener("click", () => {
   reset();
 
   result.innerHTML = sumResult;
+});
+
+btnReset.addEventListener("click", () => {
+  reset();
 });
