@@ -2,6 +2,7 @@ let num1 = [];
 let num2 = [];
 let operator;
 let displayNum = [];
+let sumResult;
 
 const btnNums = document.querySelectorAll(".btn-num");
 const btnOperators = document.querySelectorAll(".btn-operator");
@@ -73,10 +74,14 @@ const reset = () => {
 }
 
 btnRun.addEventListener("click", () => {
-  const convertNum1 = num1.join("");
-  const convertNum2 = num2.join("");
+  let convertNum1 = num1.join("");
+  let convertNum2 = num2.join("");
 
-  const sumResult = operate(parseInt(convertNum1), parseInt(convertNum2), operator);
+  if (num1.length === 0 && num2.length > 0 && operator !== undefined) {
+    convertNum1 = sumResult;
+  }
+
+  sumResult = operate(parseInt(convertNum1), parseInt(convertNum2), operator);
   reset();
 
   result.innerHTML = sumResult;
