@@ -11,6 +11,25 @@ const btnRun = document.querySelector(".btn-run");
 const result = document.querySelector("#result");
 const btnMultiply = document.querySelector(".btn-multiply");
 const btnReset = document.querySelector("#btn-reset");
+const btnPlusNegative = document.querySelector("#btn-plus-negative");
+
+btnPlusNegative.addEventListener("click", () => {
+  if (operator === undefined && !num1.includes("-")) {
+    num1.unshift("-");
+    displayNum.unshift("-");
+  } else if (operator !== undefined && num1.length > 0 && !num2.includes("-")) {
+    num2.unshift("-");
+    displayNum.unshift("-");
+  } else if (operator === undefined && num1.includes("-")) {
+    num1.shift();
+    displayNum.shift();
+  } else if (operator !== undefined && num1.length > 0 && num2.includes("-")) {
+    num2.shift();
+    displayNum.shift();
+  }
+
+  result.textContent = displayNum.join("");
+});
 
 btnNums.forEach((btnNum) => btnNum.addEventListener("click", () => {
   if (operator === undefined) {
