@@ -112,6 +112,14 @@ const reset = () => {
   displayNum = [];
 }
 
+function parseNumber(number) {
+  if (number.includes('.')) {
+    return parseFloat(number); // It's a float
+  } else {
+    return parseInt(number, 10); // It's an integer
+  }
+}
+
 const handleCalculation = () => {
   let convertNum1 = num1.join("");
   let convertNum2 = num2.join("");
@@ -120,7 +128,7 @@ const handleCalculation = () => {
     convertNum1 = sumResult;
   }
 
-  sumResult = operate(parseInt(convertNum1), parseInt(convertNum2), operator);
+  sumResult = operate(parseNumber(convertNum1), parseNumber(convertNum2), operator);
   reset();
 
   result.innerHTML = sumResult;
