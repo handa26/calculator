@@ -128,7 +128,7 @@ const handleCalculation = () => {
     convertNum1 = sumResult;
   }
 
-  sumResult = operate(parseNumber(convertNum1), parseNumber(convertNum2), operator);
+  sumResult = operate(parseFloat(convertNum1), parseFloat(convertNum2), operator);
   reset();
 
   result.innerHTML = sumResult;
