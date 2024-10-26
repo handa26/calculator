@@ -43,7 +43,7 @@ body {
 .calculator .display h1 {
   color: #fff;
   text-align: right;
-  font-size: 42px;
+  font-size: 52px;
 }
 
 .control-keys {
@@ -72,15 +72,47 @@ body {
   color: #000;
 }
 
+.control-keys .btn-func:focus {
+  background-color: #A5A5A5;
+  transition: all 1s;
+}
+
+.control-keys .btn-func:active {
+  background-color: #BFBFBF;
+  transition: background-color 0.1s;
+}
+
 .control-keys .btn-operator,
 .control-keys .btn-run {
   background-color: #FF9500;
   color: #fff;
 }
 
+.control-keys .btn-operator:focus,
+.control-keys .btn-run:focus {
+  background-color: #FF9500;
+  transition: all 1s;
+}
+
+.control-keys .btn-operator:active,
+.control-keys .btn-run:active {
+  background-color: #FFA64D;
+  transition: background-color 0.1s;
+}
+
 .control-keys .btn-num {
   background-color: #4B4B4B;
   color: #fff;
+}
+
+.control-keys .btn-num:focus {
+  background-color: #4B4B4B;
+  transition: all 1s;
+}
+
+.control-keys .btn-num:active {
+  background-color: #666666;
+  transition: background-color 0.1s;
 }
 
 .control-keys .btn-zero {
