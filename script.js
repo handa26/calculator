@@ -57,7 +57,6 @@ document.addEventListener("keypress", (e) => {
 
   // Check if the pressed key is in the allowed keys list
   if (allowedKeys.includes(e.key)) {
-    console.log("Allowed key pressed: ", e.key);
     if (operator === undefined) {
       num1.push(e.key);
       displayNum.push(e.key);
@@ -86,9 +85,14 @@ document.addEventListener("keypress", (e) => {
 });
 
 btnOperators.forEach((btnOperator) => btnOperator.addEventListener("click", () => {
-  operator = btnOperator.innerHTML;
-  result.textContent = "0";
-  displayNum = [];
+  if (num1.length > 0 && num2.length > 0 && operator !== undefined) {
+    handleCalculation();
+  } else {
+    operator = btnOperator.innerHTML;
+    result.textContent = "0";
+    displayNum = [];
+  }
+
 }));
 
 const add = (x, y) => {
@@ -124,8 +128,8 @@ const operate = (num1, num2, operator) => {
 };
 
 const reset = () => {
-  num1 = [];
-  num2 = [];
+  num1 = [0];
+  num2 = [0];
   operator = undefined;
   result.textContent = "0";
   displayNum = [];
@@ -143,7 +147,10 @@ const handleCalculation = () => {
   let convertNum1 = num1.join("");
   let convertNum2 = num2.join("");
 
-  if (num1.length === 0 && num2.length > 0 && operator !== undefined) {
+  // if (num1.length === 0 && num2.length > 0 && operator !== undefined) {
+  //   convertNum1 = sumResult;
+  // }
+  if (num1.length === 1 && num2.length > 1 && operator !== undefined) {
     convertNum1 = sumResult;
   }
 
